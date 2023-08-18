@@ -2,6 +2,7 @@ package com.example.despensa;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.os.Build;
@@ -12,22 +13,24 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import com.example.despensa.adapters.ProductListAdapter;
+import com.example.despensa.databinding.ActivityMainBinding;
+import com.example.despensa.fragments.HomeFragment;
+import com.example.despensa.fragments.OptionsFragment;
+import com.example.despensa.fragments.RecycleFragment;
 import com.example.despensa.managers.UserManager;
 import com.example.despensa.objects.Product;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Date;
 import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
     private final int REQUEST_CODE_PRODUCT_REGISTRATION = 1;
-    private ProductListAdapter adapter;
-    private ListView productsListView;
-    private List<Product> userProductsList;
-
-    private FloatingActionButton addProductButton;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -35,49 +38,30 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        productsListView = findViewById(R.id.productsListView);
-        addProductButton = findViewById(R.id.addProductButton);
+        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
+        bottomNav.setOnNavigationItemSelectedListener(navListener);
 
-        userProductsList = UserManager.getInstance().getLogedUser().getProductsList();
-        Product product;
-        product = new Product("Banana", LocalDate.now(), LocalDate.now(), R.drawable.ic_product_banana);
-
-        userProductsList.add(product);
-
-        adapter = new ProductListAdapter(this, R.layout.list_item_product, userProductsList);
-        productsListView.setAdapter(adapter);
-
-        addProductButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Inicie a atividade de cadastro de novo produto
-                Intent intent = new Intent(HomeActivity.this, ProductRegistrationActivity.class);
-                startActivityForResult(intent, REQUEST_CODE_PRODUCT_REGISTRATION);
-            }
-        });
-
-        /*productsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // Implemente o código para lidar com o clique em um produto na lista
-            }
-        });*/
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == REQUEST_CODE_PRODUCT_REGISTRATION && resultCode == RESULT_OK) {
-            if (data != null) {
-                String newProduct = data.getStringExtra("newProduct");
-                if (newProduct != null) {
-                    userProductsList.add(new Product(newProduct, LocalDate.now(), LocalDate.now(), R.drawable.ic_product_placeholder));
-                    adapter.notifyDataSetChanged();
-                }
-            }
+    private final BottomNavigationView.OnNavigationItemSelectedListener navListener = item -> {
+        // By using switch we can easily get
+        // the selected fragment
+        // by using there id.
+        Fragment selectedFragment = null;
+        int itemId = item.getItemId();
+        if (itemId == R.id.menu_home) {
+            selectedFragment = new HomeFragment();
+        } else if (itemId == R.id.menu_options) {
+            selectedFragment = new OptionsFragment();
+        } else if (itemId == R.id.menu_recycle) {
+            selectedFragment = new RecycleFragment();
         }
-    }
-
+        // It will help to replace the
+        // one fragment to other.
+        if (selectedFragment != null) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+        }
+        return true;
+    };
 }

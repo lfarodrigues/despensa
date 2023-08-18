@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">despensa</string>
     <string name="title_activity_sign_up">SignUpActivity</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_options">Options</string>
+    <string name="menu_recycle">Recycle</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

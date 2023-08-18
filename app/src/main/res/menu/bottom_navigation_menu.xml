@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_options"
+        android:enabled="true"
+        android:icon="@drawable/ic_menu_options"
+        android:title="@string/menu_options"/>
+    <item
+        android:id="@+id/menu_home"
+        android:enabled="true"
+        android:icon="@drawable/ic_menu_home"
+        android:title="@string/menu_home"/>
+    <item
+        android:id="@+id/menu_recycle"
+        android:enabled="true"
+        android:icon="@drawable/ic_menu_recycle"
+        android:title="@string/menu_recycle"/>
+</menu>

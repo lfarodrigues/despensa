@@ -5,15 +5,18 @@ import java.util.Date;
 
 public class Product {
     private String name;
-    private LocalDate registrationDate;
-    private LocalDate dueDate;
+    private LocalDate purchaseDate;
+    private LocalDate expirationDate;
+
+    private int quantity;
     private int imageResourceId;
 
-    public Product(String name, LocalDate registrationDate, LocalDate dueDate, int imageResourceId){
+    public Product(String name, int quantity, LocalDate purchaseDate, LocalDate expirationDate, int imageResourceId){
         this.name             = name;
-        this.registrationDate = registrationDate;
-        this.dueDate          = dueDate;
+        this.purchaseDate = purchaseDate;
+        this.expirationDate          = expirationDate;
         this.imageResourceId  = imageResourceId;
+        this.quantity         = quantity;
     }
 
     public String getName() {
@@ -24,20 +27,20 @@ public class Product {
         this.name = name;
     }
 
-    public LocalDate getRegistrationDate() {
-        return registrationDate;
+    public LocalDate getPurchaseDate() {
+        return purchaseDate;
     }
 
-    public void setRegistrationDate(LocalDate registrationDate) {
-        this.registrationDate = registrationDate;
+    public void setPurchaseDate(LocalDate purchaseDate) {
+        this.purchaseDate = purchaseDate;
     }
 
-    public LocalDate getDueDate() {
-        return dueDate;
+    public LocalDate getExpirationDate() {
+        return expirationDate;
     }
 
-    public void setDueDate(LocalDate dueDate) {
-        this.dueDate = dueDate;
+    public void setExpirationDate(LocalDate expirationDate) {
+        this.expirationDate = expirationDate;
     }
 
     public int getImageResourceId() {
@@ -46,5 +49,13 @@ public class Product {
 
     public void setImageResourceId(int imageResourceId) {
         this.imageResourceId = imageResourceId;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }
