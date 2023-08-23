@@ -1,22 +1,38 @@
 package com.example.despensa.objects;
 
-import java.time.LocalDate;
-import java.util.Date;
+import com.example.despensa.R;
 
 public class Product {
     private String name;
-    private LocalDate purchaseDate;
-    private LocalDate expirationDate;
-
+    private String purchaseDate;
+    private String expirationDate;
+    private String category;
     private int quantity;
     private int imageResourceId;
 
-    public Product(String name, int quantity, LocalDate purchaseDate, LocalDate expirationDate, int imageResourceId){
-        this.name             = name;
-        this.purchaseDate = purchaseDate;
-        this.expirationDate          = expirationDate;
-        this.imageResourceId  = imageResourceId;
-        this.quantity         = quantity;
+    public Product(String name, int quantity, String category, String purchaseDate, String expirationDate, int imageResourceId){
+        this.name            = name;
+        this.purchaseDate    = purchaseDate;
+        this.expirationDate  = expirationDate;
+        this.imageResourceId = imageResourceId;
+        this.quantity        = quantity;
+        this.category        = category;
+    }
+
+    public int getRecycleImageId(){
+        int id = 0;
+        switch(this.category){
+            case "Orgânico":
+                id = R.drawable.ic_lixeira_marrom;
+                break;
+            case "Metal":
+                break;
+            case "Plástico":
+                break;
+            case "Vidro":
+                break;
+        }
+        return id;
     }
 
     public String getName() {
@@ -27,19 +43,19 @@ public class Product {
         this.name = name;
     }
 
-    public LocalDate getPurchaseDate() {
+    public String getPurchaseDate() {
         return purchaseDate;
     }
 
-    public void setPurchaseDate(LocalDate purchaseDate) {
+    public void setPurchaseDate(String purchaseDate) {
         this.purchaseDate = purchaseDate;
     }
 
-    public LocalDate getExpirationDate() {
+    public String getExpirationDate() {
         return expirationDate;
     }
 
-    public void setExpirationDate(LocalDate expirationDate) {
+    public void setExpirationDate(String expirationDate) {
         this.expirationDate = expirationDate;
     }
 
@@ -57,5 +73,13 @@ public class Product {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }

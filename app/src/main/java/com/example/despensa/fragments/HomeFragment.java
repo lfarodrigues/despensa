@@ -22,9 +22,9 @@ import com.example.despensa.managers.UserManager;
 import com.example.despensa.objects.Product;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -82,7 +82,6 @@ public class HomeFragment extends Fragment {
 
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -94,7 +93,7 @@ public class HomeFragment extends Fragment {
 
         userProductsList = UserManager.getInstance().getLogedUser().getProductsList();
         Product product;
-        product = new Product("Banana", 1,LocalDate.now(), LocalDate.now(), R.drawable.ic_product_banana);
+        product = new Product("Banana", 1, "", "", "",R.drawable.ic_product_banana);
 
         userProductsList.add(product);
 
@@ -120,25 +119,27 @@ public class HomeFragment extends Fragment {
         if (requestCode == REQUEST_CODE_PRODUCT_REGISTRATION && resultCode == RESULT_OK) {
             if (data != null) {
                 String newProduct = data.getStringExtra("newProduct");
-                //LocalDate purchaseDate = convertToDate(data.getStringExtra("purchaseDate"));
-                //LocalDate expirationDate = convertToDate(data.getStringExtra("expirationDate"));
-                int quantity = Integer.getInteger(data.getStringExtra("quantity"));
-                //if (newProduct != null && purchaseDate != null && expirationDate != null && quantity > 0) {
-                    UserManager.getInstance().getLogedUser().getProductsList().add(new Product(newProduct, quantity, LocalDate.now(), LocalDate.now(), R.drawable.ic_product_placeholder));
+                String purchaseDate = data.getStringExtra("purchaseDate");
+                String expirationDate = data.getStringExtra("expirationDate");
+                Integer quantity = Integer.parseInt(data.getStringExtra("quantity"));
+                String category = data.getStringExtra("category");
+                if (newProduct != null && purchaseDate != null && expirationDate != null && quantity != null && category != null) {
+                    UserManager.getInstance().getLogedUser().getProductsList().add(new Product(newProduct, quantity, category, purchaseDate, expirationDate, R.drawable.ic_product_placeholder));
                     adapter.notifyDataSetChanged();
-                //}
+                }
             }
         }
     }
     // Método para converter a string da data para LocalDate
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    private LocalDate convertToDate(String dateStr) {
+    private Date convertToDate(String dateStr) {
+        Date data = null;
         try {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            return LocalDate.parse(dateStr, formatter);
-        } catch (DateTimeParseException e) {
+            // Converta a string da data para um objeto Date
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            data = sdf.parse(dateStr);
+        } catch (ParseException e) {
             e.printStackTrace();
-            return null; // Retorne null em caso de erro na conversão
         }
+        return data;
     }
 }

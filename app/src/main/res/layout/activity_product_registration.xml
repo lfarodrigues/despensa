@@ -49,6 +49,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp"/>
 
+    <Spinner
+        android:id="@+id/spinnerCategory"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Categoria do produto"
+        android:inputType="number"
+        app:layout_constraintTop_toBottomOf="@+id/editTextQuantity"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"/>
+
     <Button
         android:id="@+id/registerProductButton"
         android:layout_width="wrap_content"
@@ -56,6 +67,6 @@
         android:text="Cadastrar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextQuantity" />
+        app:layout_constraintTop_toBottomOf="@+id/spinnerCategory" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

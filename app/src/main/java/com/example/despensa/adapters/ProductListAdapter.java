@@ -156,12 +156,20 @@ public class ProductListAdapter extends ArrayAdapter<Product> {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle("Descarte Correto")
                 .setMessage("Para descartar corretamente o produto " + product.getName() +
-                        ", siga as orientações fornecidas pela legislação local ou pelo fabricante.")
+                        ", siga as orientações fornecidas pela legislação local ou pelo fabricante/produtor. Na sua região," +
+                        " a cor de lixeira comum para produtos da categoria " + product.getCategory() + " é essa:"
+                )
                 .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         // Fechar o diálogo
                     }
                 });
+        // Crie uma ImageView e defina a imagem usando o recurso de drawable
+        ImageView imageView = new ImageView(context);
+        imageView.setImageResource(product.getRecycleImageId()); // Substitua pelo nome da sua imagem
+
+        builder.setView(imageView);
+        builder.setPositiveButton("Fechar", null);
         builder.create().show();
     }
 }
