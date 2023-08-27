@@ -6,15 +6,28 @@
     android:layout_height="match_parent"
     tools:context=".ProductRegistrationActivity">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Insira as informações do seu produto!"
+        android:textSize="20sp"
+        android:id="@+id/textviewInfo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/rounded_textview_background"/>
+
     <EditText
         android:id="@+id/newProductNameEditText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="Nome do produto"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="16dp"/>
+        app:layout_constraintStart_toEndOf="@id/imageProduct"
+        app:layout_constraintTop_toBottomOf="@id/textviewInfo"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="42dp"/>
 
     <EditText
         android:id="@+id/editTextPurchaseDate"
@@ -23,9 +36,10 @@
         android:hint="Data de Compra"
         android:inputType="date"
         app:layout_constraintTop_toBottomOf="@+id/newProductNameEditText"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/imageToday"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="42dp"/>
 
     <EditText
         android:id="@+id/editTextExpirationDate"
@@ -34,9 +48,10 @@
         android:hint="Data de Validade"
         android:inputType="date"
         app:layout_constraintTop_toBottomOf="@+id/editTextPurchaseDate"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/imageExpDate"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="42dp"/>
 
     <EditText
         android:id="@+id/editTextQuantity"
@@ -45,13 +60,14 @@
         android:hint="Quantidade"
         android:inputType="number"
         app:layout_constraintTop_toBottomOf="@+id/editTextExpirationDate"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/imageQuantity"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="42dp"/>
 
     <Spinner
         android:id="@+id/spinnerCategory"
-        android:layout_width="0dp"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:hint="Categoria do produto"
         android:inputType="number"
@@ -60,6 +76,42 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp"/>
 
+    <ImageView
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:id="@+id/imageProduct"
+        android:src="@drawable/ic_product_banana"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/newProductNameEditText"
+        app:layout_constraintBottom_toBottomOf="@+id/newProductNameEditText"/>
+
+    <ImageView
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:id="@+id/imageToday"
+        android:src="@mipmap/ic_calendar_today"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/editTextPurchaseDate"
+        app:layout_constraintBottom_toBottomOf="@+id/editTextPurchaseDate"/>
+
+    <ImageView
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:id="@+id/imageExpDate"
+        android:src="@mipmap/ic_calendar_then"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/editTextExpirationDate"
+        app:layout_constraintBottom_toBottomOf="@+id/editTextExpirationDate"/>
+
+    <ImageView
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:id="@+id/imageQuantity"
+        android:src="@mipmap/ic_quantity"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/editTextQuantity"
+        app:layout_constraintBottom_toBottomOf="@+id/editTextQuantity"/>
+
     <Button
         android:id="@+id/registerProductButton"
         android:layout_width="wrap_content"
@@ -67,6 +119,16 @@
         android:text="Cadastrar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerCategory" />
+        app:layout_constraintTop_toBottomOf="@+id/spinnerCategory"
+        android:layout_marginTop="16dp"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/openCameraButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:src="@mipmap/ic_camera"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

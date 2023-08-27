@@ -12,6 +12,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 public class ProductRegistrationActivity extends AppCompatActivity {
     private EditText newProductNameEditText;
     private EditText purchaseDateEditText;
@@ -19,6 +21,7 @@ public class ProductRegistrationActivity extends AppCompatActivity {
     private EditText qtdEditText;
     private Spinner spinner;
     private String selectedItem;
+    private FloatingActionButton cameraButton = findViewById(R.id.openCameraButton);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
