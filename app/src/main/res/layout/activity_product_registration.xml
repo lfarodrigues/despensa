@@ -6,22 +6,94 @@
     android:layout_height="match_parent"
     tools:context=".ProductRegistrationActivity">
 
+
+    <TextView
+        android:id="@+id/textoInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Insira as informações do novo produto"
+        android:textSize="20sp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/green"/>
+
+
     <EditText
         android:id="@+id/newProductNameEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:hint="Nome do produto"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textoInfo" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:id="@+id/expiringDate"
+        android:hint="Prazo de Validade"
+        android:inputType="date"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/newProductNameEditText"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/quantity"
+        android:layout_marginTop="10dp"
+        android:inputType="number"
+        android:hint="Quantidade"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/expiringDate" />
+
+    <ImageView
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:id="@+id/imageProduct"
+        android:layout_marginRight="5dp"
+        app:layout_constraintEnd_toStartOf="@+id/newProductNameEditText"
+        app:layout_constraintTop_toTopOf="@+id/newProductNameEditText"
+        app:layout_constraintBottom_toBottomOf="@+id/newProductNameEditText"
+        android:src="@drawable/ic_product_banana"/>
+
+
+    <ImageView
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:id="@+id/imageCalendar"
+        android:layout_marginRight="5dp"
+        app:layout_constraintEnd_toStartOf="@+id/expiringDate"
+        app:layout_constraintTop_toTopOf="@+id/expiringDate"
+        app:layout_constraintBottom_toBottomOf="@+id/expiringDate"
+        android:src="@mipmap/ic_calendar" />
+
+
+    <ImageView
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:id="@+id/imageQuantity"
+        android:layout_marginRight="5dp"
+        app:layout_constraintEnd_toStartOf="@+id/quantity"
+        app:layout_constraintTop_toTopOf="@+id/quantity"
+        app:layout_constraintBottom_toBottomOf="@+id/quantity"
+        android:src="@mipmap/ic_quant"/>
+
 
     <Button
         android:id="@+id/registerProductButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Cadastrar"
+        android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/newProductNameEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/quantity"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

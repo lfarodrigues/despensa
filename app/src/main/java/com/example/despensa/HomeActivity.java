@@ -29,6 +29,8 @@ public class HomeActivity extends AppCompatActivity {
 
     private FloatingActionButton addProductButton;
 
+    private FloatingActionButton recyclingTipsButton;
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +39,7 @@ public class HomeActivity extends AppCompatActivity {
 
         productsListView = findViewById(R.id.productsListView);
         addProductButton = findViewById(R.id.addProductButton);
+        recyclingTipsButton = findViewById(R.id.recyclingTipsButton);
 
         userProductsList = UserManager.getInstance().getLogedUser().getProductsList();
         Product product;
@@ -56,6 +59,14 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        recyclingTipsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomeActivity.this, RecyclingTipsActivity.class);
+                startActivity(intent);
+            }
+        });
+
         /*productsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -72,6 +83,8 @@ public class HomeActivity extends AppCompatActivity {
         if (requestCode == REQUEST_CODE_PRODUCT_REGISTRATION && resultCode == RESULT_OK) {
             if (data != null) {
                 String newProduct = data.getStringExtra("newProduct");
+                String newProductExpDate = data.getStringExtra("newProdExpDate");
+                String newProductQuantity = data.getStringExtra("newProdQuantity");
                 if (newProduct != null) {
                     userProductsList.add(new Product(newProduct, LocalDate.now(), LocalDate.now(), R.drawable.ic_product_placeholder));
                     adapter.notifyDataSetChanged();

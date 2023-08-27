@@ -16,6 +16,9 @@
             android:name=".ProductRegistrationActivity"
             android:exported="false" />
         <activity
+            android:name=".RecyclingTipsActivity"
+            android:exported="false" />
+        <activity
             android:name=".CustomListView"
             android:exported="false" />
         <activity
