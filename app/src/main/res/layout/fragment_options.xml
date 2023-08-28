@@ -6,12 +6,4 @@
     android:background="#294C25"
     tools:context=".fragments.OptionsFragment">
 
-    <NumberPicker
-        android:id="@+id/numberPicker"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="16dp"
-        android:max="30"/>
-
 </FrameLayout>
