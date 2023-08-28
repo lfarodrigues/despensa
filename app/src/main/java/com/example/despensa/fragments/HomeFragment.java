@@ -91,9 +91,9 @@ public class HomeFragment extends Fragment {
 
         userProductsList = UserManager.getInstance().getLogedUser().getProductsList();
         Product product;
-        product = new Product("Banana", 1, "", "", "03/09/2023",R.drawable.ic_product_banana);
+        /*product = new Product("Banana", 1, "", "", "03/09/2023",R.drawable.ic_product_banana);
 
-        userProductsList.add(product);
+        userProductsList.add(product);*/
 
         adapter = new ProductListAdapter(getActivity(), R.layout.list_item_product, userProductsList);
         productsListView.setAdapter(adapter);
@@ -114,7 +114,7 @@ public class HomeFragment extends Fragment {
                 Integer quantity = Integer.parseInt(data.getStringExtra("quantity"));
                 String category = data.getStringExtra("category");
                 if (newProduct != null && purchaseDate != null && expirationDate != null && quantity != null && category != null) {
-                    UserManager.getInstance().getLogedUser().getProductsList().add(new Product(newProduct, quantity, category, purchaseDate, expirationDate, R.drawable.ic_product_placeholder));
+                    UserManager.getInstance().getLogedUser().getProductsList().add(new Product(newProduct, quantity, category, purchaseDate, expirationDate));
                     adapter.notifyDataSetChanged();
                 }
             }
