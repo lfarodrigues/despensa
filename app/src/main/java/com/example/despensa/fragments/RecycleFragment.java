@@ -1,66 +1,69 @@
 package com.example.despensa.fragments;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.despensa.HomeActivity;
 import com.example.despensa.R;
+import com.example.despensa.adapters.DisposalCardAdapter;
+import com.example.despensa.callbacks.SwipeToDeleteCallback;
+import com.example.despensa.decorations.VerticalSpaceItemDecoration;
+import com.example.despensa.managers.TipsManager;
+import com.example.despensa.managers.UserManager;
+import com.example.despensa.objects.RecycleTip;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link RecycleFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+import java.util.List;
+
 public class RecycleFragment extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public RecycleFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment RecycleFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static RecycleFragment newInstance(String param1, String param2) {
-        RecycleFragment fragment = new RecycleFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    TipsManager tipsManager;
+    private RecyclerView recyclerView;
+    private DisposalCardAdapter adapter;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_recycle, container, false);
+
+        recyclerView = view.findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
+
+        // Adicione um espaçamento entre os items da RecyclerView
+        int spacing = getResources().getDimensionPixelSize(R.dimen.spacing_between_cards);
+        recyclerView.addItemDecoration(new DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL));
+        recyclerView.addItemDecoration(new VerticalSpaceItemDecoration(spacing)); // Classe definida abaixo
+
+        tipsManager = UserManager.getInstance().getTipsManager();
+
+        List<RecycleTip> recycleTipList = tipsManager.getNewTips();
+
+        adapter = new DisposalCardAdapter(recycleTipList);
+        recyclerView.setAdapter(adapter);
+
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new SwipeToDeleteCallback(adapter));
+        itemTouchHelper.attachToRecyclerView(recyclerView);
+
+        // viu as ultimas dicas
+        tipsManager.setNewTipsCount(0);
+        updateBadge();
+
+        return view;
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_recycle, container, false);
+    /*private List<RecycleTip> generateDummyData() {
+        List<RecycleTip> dummyList = new ArrayList<>();
+        // Adicione mais itens de exemplo conforme necessário
+        return dummyList;
+    }*/
+
+    private void updateBadge() {
+        int newTipsCount = tipsManager.getNewTipsCount();
+        ((HomeActivity) requireActivity()).updateBadgeCount(newTipsCount);
     }
 }

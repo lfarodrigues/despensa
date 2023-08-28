@@ -2,4 +2,8 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="cinza_claro">#ECEFF1</color> <!-- Substitua pelo valor de cinza claro que você desejar -->
+    <color name="vermelho">#FF0000</color> <!-- Substitua pelo valor da cor vermelha que você desejar -->
+    <color name="branco">#FFFFFF</color> <!-- Substitua pelo valor da cor branca que você desejar -->
+    <color name="green">#FF58AC53</color>
 </resources>

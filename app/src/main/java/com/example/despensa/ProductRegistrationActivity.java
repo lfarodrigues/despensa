@@ -31,8 +31,8 @@ public class ProductRegistrationActivity extends AppCompatActivity {
         // Código do spin
         spinner = findViewById(R.id.spinnerCategory);
         // Popule o Spinner com dados usando um ArrayAdapter
-        String[] opcoes = {"Orgânico", "Plástico", "Metal", "Vidro"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, opcoes);
+        String[] options = {"Orgânico", "Plástico", "Metal", "Vidro", "Plástico", "Outro"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, options);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
@@ -51,8 +51,6 @@ public class ProductRegistrationActivity extends AppCompatActivity {
         });
 
         Button registerProductButton = findViewById(R.id.registerProductButton);
-
-
         registerProductButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

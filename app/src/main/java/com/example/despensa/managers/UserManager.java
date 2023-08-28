@@ -10,10 +10,12 @@ import java.util.List;
 public class UserManager {
     private static UserManager instance;
     private List<User> listUsers;
+    private TipsManager tipsManager;
     private User logedUser;
     public UserManager() {
-       listUsers = new ArrayList<User>();
-       logedUser = null;
+        tipsManager = new TipsManager();
+        listUsers = new ArrayList<User>();
+        logedUser = null;
     }
 
     public static synchronized UserManager getInstance() {
@@ -62,5 +64,9 @@ public class UserManager {
 
     public void setLogedUser(User logedUser) {
         this.logedUser = logedUser;
+    }
+
+    public TipsManager getTipsManager() {
+        return tipsManager;
     }
 }

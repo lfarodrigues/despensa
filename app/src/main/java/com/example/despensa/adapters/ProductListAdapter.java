@@ -65,7 +65,7 @@ public class ProductListAdapter extends ArrayAdapter<Product> {
     private void showOptionsPopup(Product product) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle("Opções do Item")
-                .setItems(new CharSequence[]{"Editar", "Deletar", "Consumir"}, new DialogInterface.OnClickListener() {
+                .setItems(new CharSequence[]{"Editar", "Deletar", "Descartar"}, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         switch (which) {
                             case 0:
@@ -78,8 +78,8 @@ public class ProductListAdapter extends ArrayAdapter<Product> {
                                 showDeleteConfirmationPopup(product);
                                 break;
                             case 2:
-                                // Opção de consumir selecionada
-                                showConsumeDialog(product);
+                                // Opção de descartar selecionada
+                                showDescartDialog(product);
                                 break;
                         }
                     }
@@ -111,16 +111,16 @@ public class ProductListAdapter extends ArrayAdapter<Product> {
         notifyDataSetChanged();
     }
 
-    private void showConsumeDialog(Product product) {
+    private void showDescartDialog(Product product) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        builder.setTitle("Consumir Item");
+        builder.setTitle("Descartar Item");
 
         // Incluir um EditText no diálogo para inserir a quantidade
         final EditText input = new EditText(getContext());
         input.setInputType(InputType.TYPE_CLASS_NUMBER);
         builder.setView(input);
 
-        builder.setPositiveButton("Consumir", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("Descartar", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 // Obter a quantidade inserida pelo usuário
                 String quantityStr = input.getText().toString();
