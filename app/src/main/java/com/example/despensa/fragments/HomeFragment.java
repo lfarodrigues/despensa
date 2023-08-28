@@ -44,7 +44,6 @@ public class HomeFragment extends Fragment {
     private ProductListAdapter adapter;
     private ListView productsListView;
     private List<Product> userProductsList;
-    private FloatingActionButton addProductButton;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -89,7 +88,6 @@ public class HomeFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
 
         productsListView = rootView.findViewById(R.id.productsListView);
-        addProductButton = rootView.findViewById(R.id.addProductButton);
 
         userProductsList = UserManager.getInstance().getLogedUser().getProductsList();
         Product product;
@@ -100,14 +98,6 @@ public class HomeFragment extends Fragment {
         adapter = new ProductListAdapter(getActivity(), R.layout.list_item_product, userProductsList);
         productsListView.setAdapter(adapter);
 
-        addProductButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Inicie a atividade de cadastro de novo produto
-                Intent intent = new Intent(getActivity(), ProductRegistrationActivity.class);
-                startActivity(intent);
-            }
-        });
         // Inflate the layout for this fragment
         return rootView;
     }

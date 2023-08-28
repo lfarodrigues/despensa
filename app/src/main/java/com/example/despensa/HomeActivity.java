@@ -32,6 +32,8 @@ import java.util.List;
 public class HomeActivity extends AppCompatActivity {
     private final int REQUEST_CODE_PRODUCT_REGISTRATION = 1;
 
+    private FloatingActionButton addProductButton;
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +41,17 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
+        addProductButton = findViewById(R.id.addProductButton);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
+
+        addProductButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Inicie a atividade de cadastro de novo produto
+                Intent intent = new Intent(HomeActivity.this, ProductRegistrationActivity.class);
+                startActivity(intent);
+            }
+        });
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
     }

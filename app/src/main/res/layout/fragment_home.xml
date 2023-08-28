@@ -13,15 +13,6 @@
         android:layout_height="533dp"
         android:layout_gravity="center" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/addProductButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="16dp"
-        android:contentDescription="Cadastro de novo produto"
-        android:src="@drawable/ic_input_add"
-        android:translationY="-45dp" />
 
     <ImageView
         android:id="@+id/imageDespensa"
