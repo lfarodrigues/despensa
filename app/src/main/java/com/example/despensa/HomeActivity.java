@@ -59,6 +59,14 @@ public class HomeActivity extends AppCompatActivity {
         startPeriodicTipSelection();
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
+
+        addProductButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeActivity.this, ProductRegistrationActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void initNavBar() {

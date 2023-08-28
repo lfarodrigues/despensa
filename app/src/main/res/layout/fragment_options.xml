@@ -12,7 +12,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="16dp"
-        android:maxValue="30"
-    />
+        android:max="30"/>
 
 </FrameLayout>
