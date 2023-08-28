@@ -46,9 +46,11 @@ public class ProductListAdapter extends ArrayAdapter<Product> {
         if (product != null) {
             ImageView productImage = itemView.findViewById(R.id.productImage);
             TextView productName = itemView.findViewById(R.id.productName);
+            TextView productExpDate = itemView.findViewById(R.id.productExpDate);
 
             productImage.setImageResource(product.getImageResourceId());
             productName.setText(product.getName());
+            productExpDate.setText(product.getExpirationDate());
         }
 
         itemView.setOnClickListener(new View.OnClickListener() {

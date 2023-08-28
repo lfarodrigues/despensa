@@ -91,7 +91,7 @@ public class HomeFragment extends Fragment {
 
         userProductsList = UserManager.getInstance().getLogedUser().getProductsList();
         Product product;
-        product = new Product("Banana", 1, "", "", "",R.drawable.ic_product_banana);
+        product = new Product("Banana", 1, "", "", "03/09/2023",R.drawable.ic_product_banana);
 
         userProductsList.add(product);
 
