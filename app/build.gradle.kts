@@ -3,6 +3,8 @@ plugins {
     id("org.jetbrains.kotlin.android")
 }
 
+
+
 android {
     namespace = "com.example.despensa"
     compileSdk = 33
@@ -50,7 +52,9 @@ android {
     viewBinding{
         enable = true
     }
+
 }
+
 
 dependencies {
 
@@ -73,4 +77,6 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
     implementation ("com.google.android.material:material:1.4.0")
+    implementation ("com.journeyapps:zxing-android-embedded:4.1.0")
+    implementation ("androidx.appcompat:appcompat:1.0.2")
 }

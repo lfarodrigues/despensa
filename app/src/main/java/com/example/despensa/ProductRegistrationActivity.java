@@ -21,7 +21,7 @@ public class ProductRegistrationActivity extends AppCompatActivity {
     private EditText qtdEditText;
     private Spinner spinner;
     private String selectedItem;
-    private FloatingActionButton cameraButton = findViewById(R.id.openCameraButton);
+    private FloatingActionButton openCameraButton = findViewById(R.id.openCameraButton);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +38,7 @@ public class ProductRegistrationActivity extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, opcoes);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
+
 
         // Defina um ouvinte para lidar com a seleção do Spinner
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -80,5 +81,29 @@ public class ProductRegistrationActivity extends AppCompatActivity {
                 }
             }
         });
+
+        openCameraButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent("com.google.zxing.client.android.SCAN");
+                intent.putExtra("SCAN_MODE", "QR_CODE_MODE");
+                startActivity(intent);
+            }
+        });
+
+    }
+    @Override
+    protected void onActivityResult(int requestCode,int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 0) {
+
+            if (resultCode == RESULT_OK) {
+                String contents = data.getStringExtra("SCAN_RESULT");
+                Toast.makeText(this, contents, Toast.LENGTH_LONG).show();
+            }
+            if(resultCode == RESULT_CANCELED){
+                Toast.makeText(this, "Leitura falhou", Toast.LENGTH_LONG).show();
+            }
+        }
     }
 }

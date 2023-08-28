@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import com.example.despensa.HomeActivity;
 import com.example.despensa.ProductRegistrationActivity;
 import com.example.despensa.R;
 import com.example.despensa.adapters.ProductListAdapter;
@@ -43,7 +44,6 @@ public class HomeFragment extends Fragment {
     private ProductListAdapter adapter;
     private ListView productsListView;
     private List<Product> userProductsList;
-
     private FloatingActionButton addProductButton;
 
     // TODO: Rename and change types of parameters
@@ -105,7 +105,7 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 // Inicie a atividade de cadastro de novo produto
                 Intent intent = new Intent(getActivity(), ProductRegistrationActivity.class);
-                startActivityForResult(intent, REQUEST_CODE_PRODUCT_REGISTRATION);
+                startActivity(intent);
             }
         });
         // Inflate the layout for this fragment

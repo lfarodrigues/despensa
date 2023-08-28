@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="#F0FFF0"
     tools:context=".fragments.HomeFragment">
 
     <ListView
@@ -21,7 +21,7 @@
         android:layout_margin="16dp"
         android:contentDescription="Cadastro de novo produto"
         android:src="@drawable/ic_input_add"
-        android:translationY="-35dp" />
+        android:translationY="-45dp" />
 
     <ImageView
         android:id="@+id/imageDespensa"
