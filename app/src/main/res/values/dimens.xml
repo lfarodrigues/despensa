@@ -1,0 +1,5 @@
+<resources>
+    <!-- Outras dimensões -->
+
+    <dimen name="spacing_between_cards">16dp</dimen> <!-- Defina a dimensão que desejar -->
+</resources>

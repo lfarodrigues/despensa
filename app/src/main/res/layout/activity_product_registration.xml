@@ -4,24 +4,147 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/backgroundGreen"
     tools:context=".ProductRegistrationActivity">
 
-    <EditText
-        android:id="@+id/newProductNameEditText"
+    <TextView
+        android:id="@+id/textviewInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Nome do produto"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/rounded_textview_background"
+        android:text="Insira as informações do seu produto!"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/newProductNameEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="42dp"
+        android:hint="Nome do produto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/imageProduct"
+        app:layout_constraintTop_toBottomOf="@id/textviewInfo" />
+
+    <EditText
+        android:id="@+id/editTextPurchaseDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="42dp"
+        android:hint="Data de Compra (dd/mm/yyyy)"
+        android:inputType="date"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/imageToday"
+        app:layout_constraintTop_toBottomOf="@+id/newProductNameEditText" />
+
+    <EditText
+        android:id="@+id/editTextExpirationDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="42dp"
+        android:hint="Data de Validade (dd/mm/yyyy)"
+        android:inputType="date"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/imageExpDate"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPurchaseDate" />
+
+    <EditText
+        android:id="@+id/editTextQuantity"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="42dp"
+        android:hint="Quantidade"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/imageQuantity"
+        app:layout_constraintTop_toBottomOf="@+id/editTextExpirationDate" />
+
+    <Spinner
+        android:id="@+id/spinnerCategory"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:hint="Categoria do produto"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextQuantity" />
+
+    <ImageView
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:id="@+id/imageProduct"
+        android:src="@drawable/ic_product_banana"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/newProductNameEditText"
+        app:layout_constraintBottom_toBottomOf="@+id/newProductNameEditText"/>
+
+    <ImageView
+        android:id="@+id/imageToday"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:src="@mipmap/ic_calendar_today"
+        app:layout_constraintBottom_toBottomOf="@+id/editTextPurchaseDate"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/editTextPurchaseDate" />
+
+    <ImageView
+        android:id="@+id/imageExpDate"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:src="@mipmap/ic_calendar_then"
+        app:layout_constraintBottom_toBottomOf="@+id/editTextExpirationDate"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/editTextExpirationDate" />
+
+    <ImageView
+        android:id="@+id/imageQuantity"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:src="@mipmap/ic_quantity"
+        app:layout_constraintBottom_toBottomOf="@+id/editTextQuantity"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/editTextQuantity" />
+
+    <ImageView
+        android:id="@+id/imageViewProduct"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:contentDescription="Imagem do produto"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toTopOf="@+id/registerProductButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerCategory"
+        app:layout_constraintVertical_bias="0.65" />
 
     <Button
         android:id="@+id/registerProductButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="160dp"
+        android:backgroundTint="#FF58AC53"
         android:text="Cadastrar"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.514"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/newProductNameEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/spinnerCategory" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/openCameraButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:src="@mipmap/ic_camera"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
